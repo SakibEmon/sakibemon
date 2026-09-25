@@ -8,41 +8,46 @@ import {
   BookOpen,
   FileText,
   Layers,
+  Smartphone,
+  Globe,
+  GraduationCap,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { research, writing } from "@/lib/portfolio-data";
 import { SectionHeading } from "./profile-sections";
 
-const researchIcons = { Paper: FileText, Book: BookOpen, Project: Layers };
+const workIcons = {
+  "Mobile App": Smartphone,
+  "Web Platform": Globe,
+  EdTech: GraduationCap,
+  Paper: FileText,
+  Book: BookOpen,
+  Project: Layers,
+};
 
 export function Research() {
   const categories = [
     "All work",
     ...new Set(research.map((item) => item.category)),
   ];
+
   return (
     <section id="research" className="section-shell">
       <SectionHeading
-        label="Ideas into evidence"
-        title="Selected research."
-        description="Questions explored, perspectives shared, and knowledge in progress."
+        label="Engineering & Code"
+        title="Featured Projects."
+        description="Applied engineering solutions, mobile applications, and interactive learning platforms."
       />
       <Tabs defaultValue="All work" className="gap-7">
         <TabsList
           variant="line"
-          aria-label="Filter research"
+          aria-label="Filter projects"
           className="max-w-full flex-wrap"
         >
           {categories.map((category) => (
             <TabsTrigger value={category} key={category} className="px-3">
-              {category === "Paper"
-                ? "Papers"
-                : category === "Book"
-                  ? "Books"
-                  : category === "Project"
-                    ? "Projects"
-                    : category}
+              {category}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -55,7 +60,7 @@ export function Research() {
                     category === "All work" || item.category === category,
                 )
                 .map((item) => {
-                  const Icon = researchIcons[item.category] || FileText;
+                  const Icon = workIcons[item.category] || Layers;
                   return (
                     <Link
                       key={item.slug}
@@ -64,7 +69,7 @@ export function Research() {
                     >
                       <span className="hidden size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-card sm:flex">
                         <Icon
-                          className="size-5 text-muted-foreground"
+                          className="size-5 text-muted-foreground transition-colors group-hover:text-primary"
                           strokeWidth={1.5}
                         />
                       </span>
@@ -72,7 +77,9 @@ export function Research() {
                         <div className="flex flex-wrap items-center gap-3">
                           <Badge
                             variant={
-                              item.category === "Book" ? "default" : "outline"
+                              item.category === "Mobile App"
+                                ? "default"
+                                : "outline"
                             }
                           >
                             {item.label}
@@ -87,7 +94,7 @@ export function Research() {
                         <p className="max-w-2xl text-sm text-muted-foreground">
                           {item.description}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-foreground/80">
                           {item.meta}
                         </p>
                       </div>
@@ -107,18 +114,19 @@ export function Research() {
 
 export function Writing() {
   const categories = [
-    "All writing",
+    "All publications",
     ...new Set(writing.map((item) => item.category)),
   ];
+
   return (
     <section id="writing" className="section-shell">
       <SectionHeading
-        label="Words that connect"
-        title="Writing with substance."
-        description="Complex subjects. Clear stories. A selection of my writing."
+        label="Research & Publications"
+        title="Scholarly Works."
+        description="Peer-reviewed conference papers, published books, and undergraduate research investigations."
       />
-      <Tabs defaultValue="All writing" className="gap-7">
-        <TabsList variant="line" aria-label="Filter writing">
+      <Tabs defaultValue="All publications" className="gap-7">
+        <TabsList variant="line" aria-label="Filter publications">
           {categories.map((category) => (
             <TabsTrigger key={category} value={category} className="px-3">
               {category}
@@ -131,42 +139,43 @@ export function Writing() {
               {writing
                 .filter(
                   (item) =>
-                    category === "All writing" || item.category === category,
+                    category === "All publications" ||
+                    item.category === category,
                 )
                 .map((item) => (
                   <Link
                     href={`/writing/${item.slug}`}
                     key={item.slug}
-                    className="group overflow-hidden rounded-xl border border-border bg-card/30"
+                    className="group flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card/30"
                   >
-                    <div className="relative aspect-[16/8.5] overflow-hidden bg-card">
-                      <Image
-                        src={item.image}
-                        alt={item.imageAlt}
-                        fill
-                        sizes="(max-width: 640px) 90vw, 520px"
-                        className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
-                      />
-                      <div className="absolute left-4 top-4">
-                        <Badge variant="secondary">{item.category}</Badge>
+                    {item.image && (
+                      <div className="relative aspect-[16/8.5] overflow-hidden bg-card">
+                        <Image
+                          src={item.image}
+                          alt={item.imageAlt || item.title}
+                          fill
+                          sizes="(max-width: 640px) 90vw, 520px"
+                          className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
+                        />
+                        <div className="absolute left-4 top-4">
+                          <Badge variant="secondary">{item.category}</Badge>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col gap-4 p-6">
+                    )}
+                    <div className="flex flex-1 flex-col gap-4 p-6">
                       <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
-                        <span>
-                          {item.sample ? "Sample article" : item.label}
-                        </span>
+                        <span>{item.label}</span>
                         <span>·</span>
-                        <span>{item.readTime}</span>
+                        <span>{item.year || item.readTime}</span>
                       </div>
                       <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-primary md:text-2xl">
                         {item.title}
                       </h3>
-                      <p className="text-base text-muted-foreground">
+                      <p className="line-clamp-3 text-base text-muted-foreground">
                         {item.description}
                       </p>
-                      <span className="flex items-center justify-between border-t border-border pt-5 text-sm">
-                        Read the article{" "}
+                      <span className="mt-auto flex items-center justify-between border-t border-border pt-5 text-sm font-medium">
+                        View Details{" "}
                         <ArrowRight className="size-5 text-primary transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>

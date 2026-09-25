@@ -194,7 +194,7 @@ export function Experience() {
         ))}
       </div>
 
-      {/* Honors, Awards & Certifications from CV */}
+      {/* Honors, Awards & Certifications */}
       <div className="mt-14 grid gap-8 border-t border-border pt-12 sm:grid-cols-2">
         <div className="flex flex-col gap-5 rounded-xl border border-border bg-card/30 p-6">
           <div className="flex items-center gap-2.5">
@@ -205,13 +205,13 @@ export function Experience() {
             <li className="flex items-start gap-2">
               <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
               <span>
-                <strong className="font-medium text-foreground">1st Position</strong> — UFTB Intra University Tech Olympiad (2024)[cite: 2]
+                <strong className="font-medium text-foreground">1st Position</strong> — UFTB Intra University Tech Olympiad (2024)
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
               <span>
-                <strong className="font-medium text-foreground">1st Position</strong> — EdTE Gaming Carnival (2024)[cite: 2]
+                <strong className="font-medium text-foreground">1st Position</strong> — EdTE Gaming Carnival (2024)
               </span>
             </li>
           </ul>
@@ -225,19 +225,27 @@ export function Experience() {
           <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">
               <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>AI Infrastructure & Operations Fundamentals — NVIDIA (2026)[cite: 2]</span>
+              <span>AI Infrastructure & Operations Fundamentals — NVIDIA (2026)</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>Advanced Multi-Agent AI System — HurixDigital (2026)[cite: 2]</span>
+              <span>Advanced Multi-Agent AI System — HurixDigital (2026)</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>Get Started With Android Development — SkillUp (2026)[cite: 2]</span>
+              <span>Get Started With Android Development — SkillUp (2026)</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-              <span>Cybersecurity & Ethical Hacking — Cisco Academy (2024)[cite: 2]</span>
+              <span>Cybersecurity & Ethical Hacking — Cisco Academy (2024)</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>SEO with Squarespace — Coursera, Google (2024)</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>Job Ready Course — Wadhwani Foundation (2023)</span>
             </li>
           </ul>
         </div>

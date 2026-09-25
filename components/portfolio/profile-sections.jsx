@@ -1,10 +1,13 @@
 import {
   ArrowUpRight,
-  BookOpen,
   GraduationCap,
-  Microscope,
-  PenLine,
+  Sparkles,
   Building2,
+  Terminal,
+  BrainCircuit,
+  FolderKanban,
+  Award,
+  BadgeCheck,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -52,8 +55,8 @@ export function About() {
           </span>
         </div>
         <div className="flex flex-col gap-5">
-          {about.paragraphs.map((text) => (
-            <p key={text} className="text-base text-muted-foreground">
+          {about.paragraphs.map((text, idx) => (
+            <p key={idx} className="text-base leading-relaxed text-muted-foreground">
               {text}
             </p>
           ))}
@@ -64,23 +67,23 @@ export function About() {
           <div className="flex items-center gap-2.5">
             <GraduationCap className="size-5 text-primary" />
             <h3 className="text-base font-medium">
-              Education & academic focus
+              Education & Academic Focus
             </h3>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-base">{about.education.degree}</p>
+            <p className="text-base font-medium">{about.education.degree}</p>
             <p className="text-sm text-muted-foreground">
               {about.education.institution} · {about.education.period}
             </p>
             <p className="text-sm text-muted-foreground">
-              {about.education.focus}
+              Thesis Focus: {about.education.focus}
             </p>
           </div>
         </div>
         <div className="flex flex-col gap-5 sm:border-l sm:border-border sm:pl-8">
           <div className="flex items-center gap-2.5">
-            <Microscope className="size-5 text-primary" />
-            <h3 className="text-base font-medium">Research interests</h3>
+            <Sparkles className="size-5 text-primary" />
+            <h3 className="text-base font-medium">Areas of Interest</h3>
           </div>
           <ul className="flex flex-col gap-3">
             {about.interests.map((interest) => (
@@ -88,7 +91,7 @@ export function About() {
                 key={interest}
                 className="flex items-center gap-3 text-sm text-muted-foreground"
               >
-                <span className="size-1 rounded-full bg-primary" />
+                <span className="size-1.5 rounded-full bg-primary" />
                 {interest}
               </li>
             ))}
@@ -99,28 +102,29 @@ export function About() {
   );
 }
 
-const skillIcons = [Microscope, BookOpen, PenLine];
+const skillIcons = [Terminal, BrainCircuit, FolderKanban];
+
 export function Skills() {
   return (
     <section id="skills" className="section-shell">
       <SectionHeading
-        label="My toolkit"
-        title="A cross-disciplinary perspective."
-        description="The methods, subjects, and tools that shape how I work."
+        label="Core Skills"
+        title="Technical & Domain Expertise."
+        description="The tools, development stacks, and engineering concepts applied in my work."
       />
       <div className="grid gap-9 md:grid-cols-3">
         {skills.map((group, index) => {
           const Icon = skillIcons[index % skillIcons.length];
           return (
-            <div key={group.title} className="flex flex-col gap-5">
-              <Icon className="size-6 text-primary" strokeWidth={1.4} />
+            <div key={group.title} className="flex flex-col gap-5 rounded-xl border border-border bg-card/30 p-6">
+              <Icon className="size-6 text-primary" strokeWidth={1.5} />
               <h3 className="text-lg font-medium">{group.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <Badge
                     variant="outline"
                     key={item}
-                    className="h-auto px-3 py-1.5"
+                    className="h-auto px-3 py-1.5 text-xs font-normal"
                   >
                     {item}
                   </Badge>
@@ -138,9 +142,9 @@ export function Experience() {
   return (
     <section id="experience" className="section-shell">
       <SectionHeading
-        label="The journey so far"
-        title="Experience & affiliations."
-        description="Learning, contributing, and collaborating along the way."
+        label="Professional Track"
+        title="Experience & Leadership."
+        description="Instruction, technical writing, and extracurricular leadership roles."
       />
       <div className="flex flex-col">
         {experience.map((item, index) => (
@@ -188,6 +192,55 @@ export function Experience() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Honors, Awards & Certifications from CV */}
+      <div className="mt-14 grid gap-8 border-t border-border pt-12 sm:grid-cols-2">
+        <div className="flex flex-col gap-5 rounded-xl border border-border bg-card/30 p-6">
+          <div className="flex items-center gap-2.5">
+            <Award className="size-5 text-primary" />
+            <h3 className="text-lg font-medium">Honors & Awards</h3>
+          </div>
+          <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>
+                <strong className="font-medium text-foreground">1st Position</strong> — UFTB Intra University Tech Olympiad (2024)[cite: 2]
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>
+                <strong className="font-medium text-foreground">1st Position</strong> — EdTE Gaming Carnival (2024)[cite: 2]
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex flex-col gap-5 rounded-xl border border-border bg-card/30 p-6">
+          <div className="flex items-center gap-2.5">
+            <BadgeCheck className="size-5 text-primary" />
+            <h3 className="text-lg font-medium">Certifications</h3>
+          </div>
+          <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>AI Infrastructure & Operations Fundamentals — NVIDIA (2026)[cite: 2]</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>Advanced Multi-Agent AI System — HurixDigital (2026)[cite: 2]</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>Get Started With Android Development — SkillUp (2026)[cite: 2]</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+              <span>Cybersecurity & Ethical Hacking — Cisco Academy (2024)[cite: 2]</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );
